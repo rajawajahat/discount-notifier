@@ -18,10 +18,10 @@ from pathlib import Path
 project_root = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, project_root)
 
-from scrapers.flannels import FlannelsScraper
+from scrapers.flannels_vps import FlannelsVPSScraper
 from scrapers.harrods import HarrodsScraper
 from scrapers.harvey_nichols import HarveyNicholsScraper
-from scrapers.selfridges import SelfridgesScraper
+from scrapers.selfridges_vps import SelfridgesVpsScraper
 from scrapers.end_clothing import EndClothingScraper
 
 
@@ -143,12 +143,12 @@ def main():
     # Setup webhook
     setup_webhook_url(args.dev)
     
-    # Define all available scrapers
+    # Define all available scrapers (VPS-optimized versions)
     all_scrapers = [
-        (FlannelsScraper, "Flannels", "flannel"),
+        (FlannelsVPSScraper, "Flannels VPS", "flannel"),
         (HarrodsScraper, "Harrods", "harrods"),
         (HarveyNicholsScraper, "Harvey Nichols", "harvey"),
-        (SelfridgesScraper, "Selfridges", "selfridges"),
+        (SelfridgesVpsScraper, "Selfridges VPS", "selfridges"),
         (EndClothingScraper, "END Clothing", "end")
     ]
     
