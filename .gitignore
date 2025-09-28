@@ -49,7 +49,10 @@ logs/
 *.log
 
 # Notifications tracking
-# notifications_sent.json
+notifications_sent.json
+
+# Local scheduler scripts
+flannels_scheduler.py
 
 # Environment variables
 .env
