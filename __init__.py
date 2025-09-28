@@ -1,1 +1,0 @@
-# Fashion Discount Notifier Package
