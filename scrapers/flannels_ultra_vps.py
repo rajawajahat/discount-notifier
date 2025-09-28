@@ -41,7 +41,7 @@ class FlannelsUltraVPSScraper(VPSOptimizedBaseScraper):
         }
         
         # Initialize Discord notifier
-        webhook_url = "https://discord.com/api/webhooks/1419426002094002347/WPX3QUO1Ow2QjAhKQMpZ2bC3H49f6nKZAF0JcwqVvfOTXmdvo2ROHBWkaaKroapFFZn5"
+        webhook_url = "https://discord.com/api/webhooks/1417784756954730596/oVMLzhto-F-0cEDNcvQ6e9NrapVyzQFVFpsxOR_4o8UytTkgAS0wxN8U8ivt6hYk1ppw"
         self.discord_notifier = DiscordNotifier(webhook_url, enable_idempotency=True)
         
         # Ultra VPS-specific settings
