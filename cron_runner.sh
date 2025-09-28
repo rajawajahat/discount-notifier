@@ -1,16 +1,13 @@
 #!/bin/bash
 # Production cron runner for discount scraper
-# This script handles logging, error handling, and cleanup for cron jobs
-
-# Set working directory
-cd /root/discount-notifier
-
-# Activate virtual environment
-source venv/bin/activate
+# This script handles logging, error handling, and log rotation
 
 # Set environment variables
-export PYTHONPATH=/root/discount-notifier
-export PATH="/usr/local/bin:$PATH"
+export DISCORD_WEBHOOK_URL="your_production_webhook_url_here"
+export DISCORD_WEBHOOK_DEV_URL="your_dev_webhook_url_here"
+
+# Navigate to project directory
+cd ~/discount-notifier
 
 # Create logs directory if it doesn't exist
 mkdir -p logs
@@ -18,21 +15,18 @@ mkdir -p logs
 # Set up log rotation (keep only last 10 log files)
 find logs/ -name "scraper_run_*.log" -type f | sort | head -n -10 | xargs -r rm
 
-# Run the scraper with minimal output
+# Activate virtual environment
+source venv/bin/activate
+
+# Log start
 echo "$(date): Starting discount scraper run" >> logs/cron.log
 
-# Run the production script and capture output
-python3 run_scrapers_production.py >> logs/cron.log 2>&1
-
-# Check exit code
-if [ $? -eq 0 ]; then
+# Run scrapers (skip Flannels due to IP blocking)
+if python3 run_scrapers.py --end --harvey --harrods --selfridges >> logs/cron.log 2>&1; then
     echo "$(date): Scraper completed successfully" >> logs/cron.log
 else
-    echo "$(date): Scraper failed with exit code $?" >> logs/cron.log
+    echo "$(date): Scraper run failed with exit code $?" >> logs/cron.log
 fi
 
-# Clean up old logs (keep last 7 days)
-find logs/ -name "scraper_run_*.log" -type f -mtime +7 -delete
-
-# Deactivate virtual environment
-deactivate
+# Log completion
+echo "$(date): Cron job completed" >> logs/cron.log
