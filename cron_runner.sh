@@ -4,7 +4,7 @@
 
 # Set environment variables
 export DISCORD_WEBHOOK_URL="https://discord.com/api/webhooks/1417784756954730596/oVMLzhto-F-0cEDNcvQ6e9NrapVyzQFVFpsxOR_4o8UytTkgAS0wxN8U8ivt6hYk1ppw"
-export DISCORD_WEBHOOK_DEV_URL="your_dev_webhook_url_here"
+export DISCORD_WEBHOOK_DEV_URL="https://discord.com/api/webhooks/1419426002094002347/WPX3QUO1Ow2QjAhKQMpZ2bC3H49f6nKZAF0JcwqVvfOTXmdvo2ROHBWkaaKroapFFZn5"
 
 # Navigate to project directory
 cd ~/discount-notifier
