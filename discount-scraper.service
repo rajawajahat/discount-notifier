@@ -1,0 +1,14 @@
+[Unit]
+Description=Discount Scraper Service
+After=network.target
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/root/discount-notifier
+ExecStart=/root/discount-notifier/cron_runner.sh
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

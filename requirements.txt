@@ -1,0 +1,36 @@
+# Fashion Discount Notifier Requirements
+
+# Core dependencies
+requests>=2.31.0
+beautifulsoup4>=4.12.2
+lxml>=4.9.3
+
+# HTTP session management and retries
+urllib3>=2.0.4
+
+# Browser automation (for anti-bot fallback)
+selenium>=4.15.0
+webdriver-manager>=4.0.0
+
+# Async support (optional, for future enhancements)
+aiohttp>=3.8.5
+
+# Configuration and environment
+python-dotenv>=1.0.0
+
+# Development and testing (optional)
+pytest>=7.4.0
+pytest-cov>=4.1.0
+black>=23.7.0
+flake8>=6.0.0
+mypy>=1.5.0
+
+# Monitoring and logging
+structlog>=23.1.0
+
+# Deployment helpers
+gunicorn>=21.2.0
+supervisor>=4.2.5
+
+# System utilities
+psutil>=5.9.5
