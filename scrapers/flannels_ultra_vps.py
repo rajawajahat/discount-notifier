@@ -45,7 +45,7 @@ class FlannelsUltraVPSScraper(VPSOptimizedBaseScraper):
         self.discord_notifier = DiscordNotifier(webhook_url, enable_idempotency=True)
         
         # Ultra VPS-specific settings
-        self.max_pages = 20  # Reduced for VPS stability
+        self.max_pages = None  # No limit - scrape everything
         self.page_delay = 5   # Increased delay
         self.retry_delay = 10 # Increased retry delay
         self.max_retries = 2  # Reduced retries to fail fast
@@ -80,7 +80,7 @@ class FlannelsUltraVPSScraper(VPSOptimizedBaseScraper):
         try:
             page = 1
             
-            while page <= self.max_pages and consecutive_failures < max_consecutive_failures:
+            while consecutive_failures < max_consecutive_failures:
                 print(f"🔍 Flannels Ultra VPS Page {page}: Scraping...")
                 pages_navigated += 1
                 
@@ -129,9 +129,8 @@ class FlannelsUltraVPSScraper(VPSOptimizedBaseScraper):
                     break
                 
                 # Ultra VPS-optimized delay between pages
-                if page < self.max_pages:
-                    print(f"⏳ Waiting {self.page_delay}s before next page...")
-                    time.sleep(self.page_delay)
+                print(f"⏳ Waiting {self.page_delay}s before next page...")
+                time.sleep(self.page_delay)
                 
                 page += 1
             
@@ -244,7 +243,7 @@ class FlannelsUltraVPSScraper(VPSOptimizedBaseScraper):
         """Get network statistics for monitoring."""
         return {
             "scraper_name": self.scraper_name,
-            "max_pages": self.max_pages,
+            "max_pages": "unlimited",
             "page_delay": self.page_delay,
             "retry_delay": self.retry_delay,
             "max_retries": self.max_retries,
