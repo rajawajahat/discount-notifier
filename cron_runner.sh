@@ -16,7 +16,7 @@ mkdir -p logs
 find logs/ -name "scraper_run_*.log" -type f | sort | head -n -10 | xargs -r rm
 
 # Activate virtual environment
-source venv/bin/activate
+source .venv/bin/activate
 
 # Log start
 echo "$(date): Starting discount scraper run" >> logs/cron.log
